@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css">
+    <title>Datepicker App</title>
+</head>
+<body>
+
+<div class="container well">
+    <div class="row">
+        <div class="col-md-12 jumbotron">
+            <h1 class="display-2">Datepicker App</h1>
+            <h2 class="display-3">Bootstrap Material Datepicker</h2>
+            <h4 class="display-4">Demo Version</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container well">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-control-wrapper">
+                        <label for="date-start">Check-in</label>
+                        <input type="text" id="date-start" class="form-control floating-label">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="date-end">Check-out</label>
+                    <div class="form-control-wrapper">
+                        <input type="text" id="date-end" class="form-control floating-label">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-raised btn-lg btn-info">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        $('body').bootstrapMaterialDesign();
+
+        var startDate = $('#date-start');
+        var endDate = $('#date-end');
+
+        endDate.bootstrapMaterialDatePicker({
+            weekStart: 0,
+            format: 'DD/MM/YYYY',
+            time: false,
+            clearButton: true
+        }).bootstrapMaterialDatePicker('setMinDate', moment().add(1, 'days'));
+
+        startDate.bootstrapMaterialDatePicker({
+            weekStart: 0,
+            format: 'DD/MM/YYYY',
+            time: false,
+            clearButton: true
+        }).on('change', function(e, date) {
+            endDate.bootstrapMaterialDatePicker('setMinDate', date);
+        }).bootstrapMaterialDatePicker('setDate', moment()).bootstrapMaterialDatePicker('setMinDate', moment());
+        
+    });
+</script>
+</body>
+</html>
